@@ -1,7 +1,11 @@
 {
   "name": "odyssify",
   "version": "0.0.0",
-  "scripts": {},
+  "scripts": {
+    "postinstall": "concurrently \"cd server && npm install\" \"cd client && npm install\"",
+    "build": "concurrently \"cd server && npm run build\" \"cd client && npm run build\"",
+    "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm run dev\""
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nullsploit01/odyssify.git"
@@ -12,5 +16,7 @@
     "url": "https://github.com/nullsploit01/odyssify/issues"
   },
   "homepage": "https://github.com/nullsploit01/odyssify#readme",
-  "dependencies": {}
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
 }
