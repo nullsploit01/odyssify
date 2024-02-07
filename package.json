@@ -1,0 +1,16 @@
+{
+  "name": "odyssify",
+  "version": "0.0.0",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nullsploit01/odyssify.git"
+  },
+  "author": "nullsploit01",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nullsploit01/odyssify/issues"
+  },
+  "homepage": "https://github.com/nullsploit01/odyssify#readme",
+  "dependencies": {}
+}
