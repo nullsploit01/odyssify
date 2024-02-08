@@ -1,35 +1,30 @@
-import { environment } from './../environment/index';
-import expressWinston from 'express-winston';
-import winston, { createLogger, format } from 'winston';
+import expressWinston from 'express-winston'
+import winston, { createLogger, format } from 'winston'
+
+import { environment } from 'src/config/environment'
 
 export const httpLogger = expressWinston.logger({
   transports: [new winston.transports.Console()],
-  format: winston.format.combine(
-    winston.format.colorize(),
-    winston.format.json()
-  ),
-});
+  format: winston.format.combine(winston.format.colorize(), winston.format.json())
+})
 
 export const errorLogger = expressWinston.errorLogger({
   transports: [new winston.transports.Console()],
-  format: winston.format.combine(
-    winston.format.colorize(),
-    winston.format.json()
-  ),
-  meta: false,
-});
+  format: winston.format.combine(winston.format.colorize(), winston.format.json()),
+  meta: false
+})
 
 export const logger = createLogger({
   transports: [
     new winston.transports.File({ filename: 'error.log', level: 'error' }),
-    new winston.transports.File({ filename: 'combined.log' }),
-  ],
-});
+    new winston.transports.File({ filename: 'combined.log' })
+  ]
+})
 
 if (environment.NODE_ENV !== 'production') {
   logger.add(
     new winston.transports.Console({
-      format: format.combine(format.colorize({ all: true }), format.simple()),
+      format: format.combine(format.colorize({ all: true }), format.simple())
     })
-  );
+  )
 }

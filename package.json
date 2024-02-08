@@ -4,7 +4,8 @@
   "scripts": {
     "postinstall": "concurrently \"cd server && npm install\" \"cd client && npm install\"",
     "build": "concurrently \"cd server && npm run build\" \"cd client && npm run build\"",
-    "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm run dev\""
+    "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm run dev\"",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,15 @@
   },
   "homepage": "https://github.com/nullsploit01/odyssify#readme",
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "concurrently": "^8.2.2",
+    "husky": "^9.0.10",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "prettier --write ./**/src/**/*{js,ts,jsx,tsx}"
+    ]
   }
 }
