@@ -3,8 +3,8 @@ import { HarmBlockThreshold, HarmCategory, VertexAI } from '@google-cloud/vertex
 import { environment } from 'src/config/environment'
 
 const vertex_ai = new VertexAI({
-  project: environment.GOOGLE_PROJECT_ID,
-  location: environment.GOOGLE_PROJECT_LOCATION
+  project: environment.PROJECT_ID,
+  location: environment.PROJECT_LOCATION
 })
 
 export const vertexAIClient = vertex_ai.preview.getGenerativeModel({

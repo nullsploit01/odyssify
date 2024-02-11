@@ -5,10 +5,14 @@ const envFilePath = `.env.${nodeEnv}`
 
 dotenv.config({ path: envFilePath })
 
+if (!process.env.PROJECT_ID || !process.env.PROJECT_LOCATION) {
+  throw new Error('Project config is not defined')
+}
+
 export const environment = {
   PORT: process.env.PORT || 8080,
   NODE_ENV: process.env.NODE_ENV || 'development',
-  GOOGLE_PROJECT_ID: 'odyssify',
-  GOOGLE_PROJECT_LOCATION: 'us-central1',
+  PROJECT_ID: process.env.PROJECT_ID,
+  PROJECT_LOCATION: process.env.PROJECT_LOCATION,
   ALLOWED_ORIGIN: process.env.ALLOWED_ORIGIN
 }
