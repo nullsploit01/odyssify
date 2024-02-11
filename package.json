@@ -28,5 +28,8 @@
     "**/*.{js,jsx,ts,tsx}": [
       "prettier --write ./**/src/**/*{js,ts,jsx,tsx}"
     ]
+  },
+  "dependencies": {
+    "dotenv": "^16.4.2"
   }
 }
