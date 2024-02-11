@@ -1,6 +1,6 @@
 {
   "name": "odyssify",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "scripts": {
     "postinstall": "concurrently \"cd server && npm install\" \"cd client && npm install\"",
     "build": "concurrently \"cd server && npm run build\" \"cd client && npm run build\"",
