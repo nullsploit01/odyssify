@@ -1,5 +1,5 @@
 import { vertexAIClient } from 'src/client/vertex-ai'
-import { IControllerMethod } from 'src/types/controller'
+import { IControllerMethod } from 'src/types/controllers'
 
 class Controller {
   ping: IControllerMethod = async (req, res, next) => {
