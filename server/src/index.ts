@@ -1,10 +1,14 @@
 import express from 'express'
 
 import { environment } from 'src/config/environment'
-import { logger } from 'src/config/logger'
+import { errorLogger, httpLogger, logger } from 'src/config/logger'
 import { router } from 'src/router'
 
 const app = express()
+
+app.use(httpLogger)
+app.use(errorLogger)
+app.use(express.json())
 
 app.use(router)
 
