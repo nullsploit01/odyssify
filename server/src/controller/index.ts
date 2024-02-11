@@ -9,8 +9,7 @@ class Controller {
       }
 
       const resp = await vertexAIClient.generateContent(request)
-
-      return res.json('resp')
+      return res.json(resp)
     } catch (error) {
       next(error)
     }
