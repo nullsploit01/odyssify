@@ -1,14 +1,16 @@
 import { vertexAIClient } from 'src/client/vertex-ai'
 
 class ItineraryService {
-  getItinerary = async (location: string, numberOfDays: string) => {
+  getItinerary = async (location: string, from: Date, to: Date) => {
     const request = {
       contents: [
         {
           role: 'user',
           parts: [
             {
-              text: `Plan a ${numberOfDays} day trip to ${location} with timeframes. Generate response in json.`
+              text: `Plan a trip to ${location} from ${from} to ${to}. 
+                    Generate response in json of format 
+                    {itinerary: [{day: value (Name of Day, Month DD YYYY), activities: [{name: value, location: value, description: value, time: value}]}`
             }
           ]
         }
@@ -27,7 +29,11 @@ class ItineraryService {
     })
 
     itinerary = itinerary.replace(/```/g, '')
-    return JSON.parse(itinerary)
+    try {
+      return JSON.parse(itinerary)
+    } catch (error) {
+      return itinerary
+    }
   }
 }
 

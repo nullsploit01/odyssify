@@ -12,7 +12,8 @@ router.get(
   '/itinerary',
   [
     query('location').notEmpty().withMessage('location query param is required'),
-    query('days').notEmpty().withMessage('days query param is required')
+    query('from').notEmpty().withMessage('from query param is required').isISO8601().toDate(),
+    query('to').notEmpty().withMessage('to query param is required').isISO8601().toDate()
   ],
   requestValidator,
   controller.getItinerary

@@ -13,13 +13,17 @@ class Controller {
 
   getItinerary: IControllerMethod = async (req, res, next) => {
     try {
-      const { location, days } = req.query
+      const { location, from, to } = req.query
 
-      if (!location || !days) {
+      if (!location || !from || !to) {
         throw new BadRequestError('Invalid Request Params')
       }
 
-      const itinerary = await itineraryService.getItinerary(location?.toString(), days?.toString())
+      const itinerary = await itineraryService.getItinerary(
+        location.toString(),
+        new Date(from.toString()),
+        new Date(to.toString())
+      )
       return res.json(itinerary)
     } catch (error) {
       next(error)

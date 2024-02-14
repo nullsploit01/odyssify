@@ -14,6 +14,5 @@ export const vertexAIClient = vertex_ai.preview.getGenerativeModel({
       category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
       threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE
     }
-  ],
-  generation_config: { max_output_tokens: 2048 }
+  ]
 })
