@@ -17,9 +17,9 @@ class ItineraryService {
       ]
     }
     const { response } = await vertexAIClient.generateContent(request)
-    let itinerary = ''
     const parsedResponse = await response
 
+    let itinerary = ''
     parsedResponse.candidates.map((candidate) => {
       if (candidate && candidate.content?.parts.length) {
         candidate.content.parts.map((part) => {
@@ -28,12 +28,7 @@ class ItineraryService {
       }
     })
 
-    itinerary = itinerary.replace(/```/g, '')
-    try {
-      return JSON.parse(itinerary)
-    } catch (error) {
-      return itinerary
-    }
+    return JSON.parse(itinerary.replace(/```/g, ''))
   }
 }
 
