@@ -1,10 +1,12 @@
-import App from './App.tsx'
-import './index.css'
-import React from 'react'
+import { ConfigProvider } from 'antd'
 import ReactDOM from 'react-dom/client'
 
+import App from 'src/App.tsx'
+import 'src/index.css'
+import { appTheme } from 'src/theme/index.ts'
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+  <ConfigProvider theme={appTheme}>
     <App />
-  </React.StrictMode>
+  </ConfigProvider>
 )
