@@ -1,11 +1,15 @@
-import { Button, Input, Space } from 'antd'
+import { ConfigProvider } from 'antd'
+import { RouterProvider } from 'react-router-dom'
+
+import 'src/index.css'
+import { router } from 'src/router'
+import { appTheme } from 'src/theme'
 
 const App = () => {
   return (
-    <Space style={{ height: '100%', width: '100%' }}>
-      <Input placeholder="Please Input" />
-      <Button type="primary">Submit</Button>
-    </Space>
+    <ConfigProvider theme={appTheme}>
+      <RouterProvider router={router} />
+    </ConfigProvider>
   )
 }
 
