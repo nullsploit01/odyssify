@@ -1,5 +1,12 @@
+import { lazy, Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
 
-import App from 'src/App.tsx'
+import LoadingScreen from 'src/components/molecules/loading-screen'
 
-ReactDOM.createRoot(document.getElementById('root')!).render(<App />)
+const App = lazy(() => import('src/App'))
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <Suspense fallback={<LoadingScreen show />}>
+    <App />
+  </Suspense>
+)
