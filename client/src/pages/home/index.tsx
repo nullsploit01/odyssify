@@ -1,11 +1,12 @@
-import { Fragment } from 'react'
+import { FC } from 'react'
 
-const HomePage = () => {
-  return (
-    <Fragment>
-      <div>Home Page</div>
-    </Fragment>
-  )
+import withTemplate from 'src/components/hoc/with-template'
+import Layout from 'src/components/templates/layout'
+
+const HomePage: FC = () => {
+  return <div>HomePaasasge</div>
 }
 
-export default HomePage
+const HomePageWithTemplate = withTemplate(HomePage, Layout)
+
+export default HomePageWithTemplate
