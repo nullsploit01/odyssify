@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #fff0f6;
+}
+
+.subHeading {
+  font-family: cursive;
+}
+
+.waviy {
+  position: relative;
+  font-size: 4rem;
+}
+
+.waviy span {
+  font-family: 'Alfa Slab One', cursive;
+  line-height: 0%;
+  position: relative;
+  display: inline-block;
+  color: #000;
+  text-transform: uppercase;
+  animation: waviy 1s infinite;
+  animation-delay: calc(0.1s * var(--i));
+}
+
+@keyframes waviy {
+  0%,
+  40%,
+  100% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(-20px);
+  }
+}

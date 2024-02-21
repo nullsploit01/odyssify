@@ -12,24 +12,15 @@ const PageLayout: FC<PropsWithChildren> = ({ children }) => {
         style={{
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center'
+          justifyContent: 'flex-start'
         }}
       >
-        {/* Header Stuff */}
         <div>
           <Title level={3}>Odyssify</Title>
         </div>
       </Header>
       <Divider />
-      <Content
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center'
-        }}
-      >
-        {children}
-      </Content>
+      <Content>{children}</Content>
       <Footer style={{ textAlign: 'center' }}>
         ©{new Date().getFullYear()} Created by NullSploit
       </Footer>
