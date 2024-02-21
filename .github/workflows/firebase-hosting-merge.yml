@@ -7,8 +7,7 @@ name: Deploy to Firebase Hosting on merge
     branches:
       - dev
     paths:
-      - 'client/**/*'
-      - 'package.json'
+      - 'client/**'
 
 jobs:
   build_and_deploy:
