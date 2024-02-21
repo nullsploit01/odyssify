@@ -4,7 +4,7 @@ import withTemplate from 'src/components/hoc/with-template'
 import PageLayout from 'src/components/templates/page-layout'
 
 const HomePage: FC = () => {
-  return <div>Home Page</div>
+  return <div>Home Pagee</div>
 }
 
 const HomePageWithTemplate = withTemplate(HomePage, PageLayout)
