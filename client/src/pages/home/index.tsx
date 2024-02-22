@@ -1,9 +1,13 @@
 import './index.css'
 import { Button, Layout } from 'antd'
 import { FC } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+import { PATHS } from 'src/router/routes/paths'
 
 const HomePage: FC = () => {
   const APP_NAME = 'ODYSSIFY'
+  const navigate = useNavigate()
 
   return (
     <Layout.Content className="container">
@@ -15,7 +19,7 @@ const HomePage: FC = () => {
       <div className="subHeading">
         <h2>Plan a Trip With AI</h2>
       </div>
-      <Button size="large" type="link">
+      <Button onClick={() => navigate(PATHS.PLAN_PAGE)} size="large" type="link">
         Get Started
       </Button>
       <div></div>
