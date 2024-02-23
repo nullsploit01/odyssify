@@ -1,11 +1,15 @@
 import { Divider, Layout, Typography } from 'antd'
 import { FC, PropsWithChildren } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+import { PATHS } from 'src/router/routes/paths'
 
 const { Header, Content, Footer } = Layout
 
 const { Title } = Typography
 
 const PageLayout: FC<PropsWithChildren> = ({ children }) => {
+  const navigate = useNavigate()
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Header
@@ -16,7 +20,9 @@ const PageLayout: FC<PropsWithChildren> = ({ children }) => {
         }}
       >
         <div>
-          <Title level={3}>Odyssify</Title>
+          <Title onClick={() => navigate(PATHS.HOME_PAGE)} style={{ cursor: 'pointer' }} level={3}>
+            Odyssify
+          </Title>
         </div>
       </Header>
       <Divider />
