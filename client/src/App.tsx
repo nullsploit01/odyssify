@@ -1,4 +1,5 @@
 import { ConfigProvider } from 'antd'
+import { StrictMode } from 'react'
 import { RouterProvider } from 'react-router-dom'
 
 import 'src/index.css'
@@ -7,9 +8,11 @@ import { appTheme } from 'src/theme'
 
 const App = () => {
   return (
-    <ConfigProvider theme={appTheme}>
-      <RouterProvider router={router} />
-    </ConfigProvider>
+    <StrictMode>
+      <ConfigProvider theme={appTheme}>
+        <RouterProvider router={router} />
+      </ConfigProvider>
+    </StrictMode>
   )
 }
 

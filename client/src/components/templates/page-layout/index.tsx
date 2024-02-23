@@ -20,7 +20,7 @@ const PageLayout: FC<PropsWithChildren> = ({ children }) => {
         </div>
       </Header>
       <Divider />
-      <Content>{children}</Content>
+      <Content style={{ minHeight: '100%' }}>{children}</Content>
       <Footer style={{ textAlign: 'center' }}>
         ©{new Date().getFullYear()} Created by NullSploit
       </Footer>
