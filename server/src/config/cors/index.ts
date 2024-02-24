@@ -7,11 +7,13 @@ export const corsConfig = () =>
   cors({
     origin(requestOrigin, callback) {
       const allowUndefinedOrigin = environment.NODE_ENV === 'local' && !requestOrigin
-      if (!allowUndefinedOrigin && requestOrigin !== environment.ALLOWED_ORIGIN) {
-        const errorMsg =
-          'The CORS policy for this site does not allow access from the specified Origin.'
-        return callback(new BadRequestError(errorMsg), false)
+
+      if (allowUndefinedOrigin || requestOrigin === environment.ALLOWED_ORIGIN) {
+        return callback(null, true)
       }
-      return callback(null, true)
+
+      const errorMsg =
+        'The CORS policy for this site does not allow access from the specified Origin.'
+      return callback(new BadRequestError(errorMsg), false)
     }
   })
