@@ -1,3 +1,4 @@
+import { corsConfig } from './config/cors'
 import express from 'express'
 
 import { environment } from 'src/config/environment'
@@ -8,6 +9,7 @@ import { router } from 'src/router'
 
 const app = express()
 
+app.use(corsConfig())
 app.use(httpLogger)
 app.use(errorLogger)
 app.use(express.json())
