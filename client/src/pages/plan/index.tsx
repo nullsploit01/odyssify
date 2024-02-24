@@ -26,7 +26,7 @@ const PlanPage: FC = () => {
   }
 
   const startPlanning = () => {
-    if (!location || !dateRange.from || dateRange.to) {
+    if (!location) {
       return
     }
 
@@ -34,7 +34,13 @@ const PlanPage: FC = () => {
   }
 
   return (
-    <Row style={{ display: 'flex', justifyContent: 'center' }}>
+    <Row
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}
+    >
       <Col lg={6}>
         <Input
           size="large"
