@@ -2,8 +2,7 @@ import { PATHS } from './paths'
 import { lazy } from 'react'
 import { RouteObject } from 'react-router-dom'
 
-import PlanPage from 'src/pages/plan'
-
+const PlanPage = lazy(() => import('src/pages/plan'))
 const HomePage = lazy(() => import('src/pages/home'))
 
 export const routes: RouteObject[] = [

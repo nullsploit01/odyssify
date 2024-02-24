@@ -1,5 +1,5 @@
 import './index.css'
-import { Col, DatePicker, Divider, Input, Row } from 'antd'
+import { Button, Col, DatePicker, Divider, Input, Row } from 'antd'
 import { FC } from 'react'
 
 import withTemplate from 'src/components/hoc/with-template'
@@ -17,6 +17,11 @@ const PlanPage: FC = () => {
         />
         <Divider />
         <DatePicker.RangePicker style={{ width: '100%', padding: '15px 10px' }} size="large" />
+        <div style={{ margin: '3rem', textAlign: 'center' }}>
+          <Button type="dashed" size="large">
+            Start Planning
+          </Button>
+        </div>
       </Col>
     </Row>
   )

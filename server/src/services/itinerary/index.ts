@@ -9,8 +9,8 @@ class ItineraryService {
           parts: [
             {
               text: `Plan a trip to ${location} from ${from} to ${to}. 
-                    Generate response in json of format 
-                    {itinerary: [{day: value (Name of Day, Month DD YYYY), activities: [{name: value, location: value, description: value, time: value}]}`
+                    Generate response in json of format. If location is not valid/found return status 400 else 200.
+                    {status: value, itinerary: [{day: value (Name of Day, Month DD YYYY), activities: [{name: value, location: value, description: value, time: value}]}`
             }
           ]
         }
