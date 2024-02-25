@@ -2,6 +2,7 @@ import { Router } from 'express'
 import { query } from 'express-validator'
 
 import { controller } from 'src/controllers'
+import { rateLimiter } from 'src/middlewares/rate-limiter'
 import { requestValidator } from 'src/middlewares/request-validator'
 
 const router = Router()
@@ -16,6 +17,7 @@ router.get(
     query('to').notEmpty().withMessage('to query param is required').isISO8601().toDate()
   ],
   requestValidator,
+  rateLimiter,
   controller.getItinerary
 )
 

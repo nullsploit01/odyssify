@@ -1,8 +1,8 @@
 import { logger } from 'src/config/logger'
 import { CustomError } from 'src/errors/custom'
-import { IErrorHandlerMiddleware } from 'src/types/middlewares'
+import { IErrorHandler } from 'src/types/middlewares'
 
-export const errorHandler: IErrorHandlerMiddleware = (err, req, res, next) => {
+export const errorHandler: IErrorHandler = (err, req, res, next) => {
   logger.error(err.message)
 
   if (err instanceof CustomError) {
