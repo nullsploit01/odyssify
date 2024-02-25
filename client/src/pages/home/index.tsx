@@ -13,7 +13,11 @@ const HomePage: FC = () => {
     <Layout.Content className="container">
       <div className="waviy">
         {APP_NAME.split('').map((char, idx) => {
-          return <span style={{ '--i': idx + 1 } as React.CSSProperties}>{char}</span>
+          return (
+            <span key={idx} style={{ '--i': idx + 1 } as React.CSSProperties}>
+              {char}
+            </span>
+          )
         })}
       </div>
       <div className="subHeading">

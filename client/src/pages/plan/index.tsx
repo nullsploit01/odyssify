@@ -26,7 +26,7 @@ const PlanPage: FC = () => {
   }
 
   const startPlanning = () => {
-    if (!location) {
+    if (!location || !dateRange.from || !dateRange.to) {
       return
     }
 
