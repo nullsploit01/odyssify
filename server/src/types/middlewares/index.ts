@@ -8,6 +8,6 @@ export interface IRequestValidator {
   (req: Request, res: Response, next: NextFunction): void
 }
 
-export interface IRateLimiterMiddleware {
+export interface IRateLimiter {
   (req: Request, res: Response, next: NextFunction): void
 }

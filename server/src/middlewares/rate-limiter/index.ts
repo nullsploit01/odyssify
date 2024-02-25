@@ -2,7 +2,7 @@ import { RateLimitExceededError } from 'src/errors/rate-limit-exceeded'
 import { IRateLimiter } from 'src/types/middlewares'
 
 let quota = {
-  accessLimit: 100,
+  accessLimit: 20,
   exhaustedRequests: 0,
   lastResetTimestamp: Date.now()
 }
@@ -11,7 +11,7 @@ const shouldResetQuota = () => {
   const currentTimestampInSeconds = Math.floor(Date.now() / 1000)
   const lastResetTimestampInSeconds = Math.floor(quota.lastResetTimestamp / 1000)
   const timeDifferenceInSeconds = currentTimestampInSeconds - lastResetTimestampInSeconds
-  return timeDifferenceInSeconds > 24 * 60 * 60 * 7 // One Week
+  return timeDifferenceInSeconds > 24 * 60 * 60 // One Day
 }
 
 export const rateLimiter: IRateLimiter = (req, res, next) => {
