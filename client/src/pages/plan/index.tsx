@@ -1,24 +1,17 @@
 import './index.css'
+import { RobotOutlined } from '@ant-design/icons'
 import { Button, Col, DatePicker, Divider, Input, Row } from 'antd'
 import { FC } from 'react'
 
 import withTemplate from 'src/components/hoc/with-template'
 import PageLayout from 'src/components/templates/page-layout'
-import { itineraryService } from 'src/services/api/itinerary'
 import { useItineraryStore } from 'src/stores/use-itinerary'
 
 const { RangePicker } = DatePicker
 
 const PlanPage: FC = () => {
-  const { location, dateRange, updateLocation, updateDateRange } = useItineraryStore()
-
-  const startPlanning = () => {
-    if (!location || !dateRange || !dateRange.from || !dateRange.to) {
-      return
-    }
-
-    itineraryService.getItinerary(location, dateRange.from, dateRange.to)
-  }
+  const { location, loading, isInvalid, updateLocation, updateDateRange, updateItinerary } =
+    useItineraryStore()
 
   return (
     <Row style={{ display: 'flex', placeContent: 'center' }}>
@@ -26,6 +19,8 @@ const PlanPage: FC = () => {
         <Input
           size="large"
           allowClear
+          required
+          status={isInvalid ? 'error' : undefined}
           value={location}
           onChange={(e) => updateLocation(e.target.value)}
           placeholder="eg Bali, Paris"
@@ -33,13 +28,28 @@ const PlanPage: FC = () => {
         />
         <Divider />
         <RangePicker
+          required
+          status={isInvalid ? 'error' : undefined}
           onChange={updateDateRange}
           style={{ width: '100%', padding: '15px 10px' }}
           size="large"
         />
-        <div style={{ margin: '3rem', textAlign: 'center' }}>
-          <Button onClick={startPlanning} type="dashed" size="large">
-            Start Planning
+        <div style={{ margin: '2rem', textAlign: 'center' }}>
+          <Button
+            onClick={updateItinerary}
+            style={{ color: '#fa541c', fontSize: '1.2rem' }}
+            loading={loading}
+            disabled={loading}
+            type="link"
+            size="large"
+          >
+            {loading ? (
+              <>Beep Boop! Please wait.</>
+            ) : (
+              <>
+                Generate Itinerary with AI <RobotOutlined />
+              </>
+            )}
           </Button>
         </div>
       </Col>
