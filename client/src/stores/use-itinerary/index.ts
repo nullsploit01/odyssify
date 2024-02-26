@@ -3,17 +3,17 @@ import { create } from 'zustand'
 import { shallow } from 'zustand/shallow'
 
 import { itineraryService } from 'src/services/api/itinerary'
-import { IItineraryDateRange, IItineraryStore } from 'src/types/stores'
+import { IItineraryDateRange, IItineraryStore, IItineraryValidation } from 'src/types/stores'
 
 const itineraryStore = create<IItineraryStore>((set, get) => ({
   location: '',
   itinerary: [],
   dateRange: {} as IItineraryDateRange,
   loading: false,
-  isInvalid: false,
+  isInvalid: {} as IItineraryValidation,
 
   updateLocation: (location) => {
-    set({ location: location })
+    set({ location: location, isInvalid: {} as IItineraryValidation })
   },
 
   updateDateRange: (dates: [Dayjs | null, Dayjs | null]) => {
@@ -21,14 +21,19 @@ const itineraryStore = create<IItineraryStore>((set, get) => ({
       return
     }
 
-    set({ dateRange: { from: dates[0], to: dates[1] } })
+    set({ dateRange: { from: dates[0], to: dates[1] }, isInvalid: {} as IItineraryValidation })
   },
 
   updateItinerary: async () => {
     const { location, dateRange } = get()
 
     if (!location || !dateRange || !dateRange.from || !dateRange.to) {
-      set({ isInvalid: true })
+      set({
+        isInvalid: {
+          location: !location?.trim(),
+          dateRange: !dateRange || !dateRange.from || !dateRange.to
+        }
+      })
       return
     }
 
@@ -39,7 +44,14 @@ const itineraryStore = create<IItineraryStore>((set, get) => ({
       .then(({ data }) => {
         set({ itinerary: data.itinerary })
       })
-      .finally(() => set({ loading: false, location: '', dateRange: {} as IItineraryDateRange }))
+      .finally(() =>
+        set({
+          loading: false,
+          location: '',
+          dateRange: {} as IItineraryDateRange,
+          isInvalid: {} as IItineraryValidation
+        })
+      )
   }
 }))
 

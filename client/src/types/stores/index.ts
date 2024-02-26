@@ -17,13 +17,18 @@ export interface IItineraryDateRange {
   to: Dayjs
 }
 
+export interface IItineraryValidation {
+  location: boolean
+  dateRange: boolean
+}
+
 export interface IItineraryStore {
   location: string
-  dateRange: IItineraryDateRange
-  itinerary: IItinerary[]
   loading: boolean
-  isInvalid: boolean
+  isInvalid: IItineraryValidation
+  itinerary: IItinerary[]
+  dateRange: IItineraryDateRange
+  updateItinerary: () => void
   updateLocation: (location: string) => void
   updateDateRange: (dates: [Dayjs | null, Dayjs | null]) => void
-  updateItinerary: () => void
 }

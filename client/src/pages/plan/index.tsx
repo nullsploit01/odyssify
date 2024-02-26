@@ -27,7 +27,7 @@ const PlanPage: FC = () => {
           size="large"
           allowClear
           required
-          status={isInvalid ? 'error' : undefined}
+          status={isInvalid.location ? 'error' : undefined}
           value={location}
           onChange={(e) => updateLocation(e.target.value)}
           placeholder="eg Bali, Paris"
@@ -36,7 +36,7 @@ const PlanPage: FC = () => {
         <Divider />
         <RangePicker
           required
-          status={isInvalid ? 'error' : undefined}
+          status={isInvalid.dateRange ? 'error' : undefined}
           onChange={updateDateRange}
           style={{ width: '100%', padding: '15px 10px' }}
           size="large"
