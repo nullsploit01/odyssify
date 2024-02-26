@@ -21,7 +21,7 @@ const itineraryStore = create<IItineraryStore>((set, get) => ({
       return
     }
 
-    set({ dateRange: { from: dates[0].toDate(), to: dates[1].toDate() } })
+    set({ dateRange: { from: dates[0], to: dates[1] } })
   },
 
   updateItinerary: async () => {
@@ -39,7 +39,7 @@ const itineraryStore = create<IItineraryStore>((set, get) => ({
       .then(({ data }) => {
         set({ itinerary: data.itinerary })
       })
-      .finally(() => set({ loading: false }))
+      .finally(() => set({ loading: false, location: '', dateRange: {} as IItineraryDateRange }))
   }
 }))
 

@@ -13,8 +13,8 @@ export interface IItinerary {
 }
 
 export interface IItineraryDateRange {
-  from: Date
-  to: Date
+  from: Dayjs
+  to: Dayjs
 }
 
 export interface IItineraryStore {

@@ -10,8 +10,15 @@ import { useItineraryStore } from 'src/stores/use-itinerary'
 const { RangePicker } = DatePicker
 
 const PlanPage: FC = () => {
-  const { location, loading, isInvalid, updateLocation, updateDateRange, updateItinerary } =
-    useItineraryStore()
+  const {
+    location,
+    loading,
+    isInvalid,
+    dateRange,
+    updateLocation,
+    updateDateRange,
+    updateItinerary
+  } = useItineraryStore()
 
   return (
     <Row style={{ display: 'flex', placeContent: 'center' }}>
@@ -33,6 +40,7 @@ const PlanPage: FC = () => {
           onChange={updateDateRange}
           style={{ width: '100%', padding: '15px 10px' }}
           size="large"
+          value={[dateRange.from, dateRange.to]}
         />
         <div style={{ margin: '2rem', textAlign: 'center' }}>
           <Button
