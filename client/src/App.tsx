@@ -1,5 +1,6 @@
+import LoadingScreen from './components/molecules/loading-screen'
 import { environment } from './config/environment'
-import { ClerkProvider } from '@clerk/clerk-react'
+import { ClerkLoaded, ClerkLoading, ClerkProvider } from '@clerk/clerk-react'
 import { ConfigProvider } from 'antd'
 import { StrictMode, useEffect } from 'react'
 import { RouterProvider } from 'react-router-dom'
@@ -17,9 +18,14 @@ const App = () => {
   return (
     <StrictMode>
       <ClerkProvider publishableKey={environment.PUBLISHABLE_KEY}>
-        <ConfigProvider theme={appTheme}>
-          <RouterProvider router={router} />
-        </ConfigProvider>
+        <ClerkLoading>
+          <LoadingScreen show />
+        </ClerkLoading>
+        <ClerkLoaded>
+          <ConfigProvider theme={appTheme}>
+            <RouterProvider router={router} />
+          </ConfigProvider>
+        </ClerkLoaded>
       </ClerkProvider>
     </StrictMode>
   )
