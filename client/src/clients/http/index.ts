@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+import { environment } from 'src/config/environment'
+
 export const httpClient = axios.create({
-  baseURL: import.meta.env.VITE_API_URL
+  baseURL: environment.API_URL
 })

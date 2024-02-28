@@ -1,4 +1,5 @@
 import './index.css'
+import { SignInButton } from '@clerk/clerk-react'
 import { Button, Layout } from 'antd'
 import { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -26,6 +27,7 @@ const HomePage: FC = () => {
       <Button onClick={() => navigate(PATHS.PLAN_PAGE)} size="large" type="link">
         Get Started
       </Button>
+      <SignInButton />
       <div></div>
     </Layout.Content>
   )

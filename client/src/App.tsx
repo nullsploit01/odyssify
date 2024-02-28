@@ -1,3 +1,5 @@
+import { environment } from './config/environment'
+import { ClerkProvider } from '@clerk/clerk-react'
 import { ConfigProvider } from 'antd'
 import { StrictMode, useEffect } from 'react'
 import { RouterProvider } from 'react-router-dom'
@@ -14,9 +16,11 @@ const App = () => {
 
   return (
     <StrictMode>
-      <ConfigProvider theme={appTheme}>
-        <RouterProvider router={router} />
-      </ConfigProvider>
+      <ClerkProvider publishableKey={environment.PUBLISHABLE_KEY}>
+        <ConfigProvider theme={appTheme}>
+          <RouterProvider router={router} />
+        </ConfigProvider>
+      </ClerkProvider>
     </StrictMode>
   )
 }
