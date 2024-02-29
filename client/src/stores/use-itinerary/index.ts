@@ -37,7 +37,7 @@ const itineraryStore = create<IItineraryStore>((set, get) => ({
       return
     }
 
-    set({ loading: true, itinerary: [] })
+    set({ loading: true })
 
     itineraryService
       .getItinerary(location, dateRange.from, dateRange.to)

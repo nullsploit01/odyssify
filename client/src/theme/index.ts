@@ -8,6 +8,10 @@ export const appTheme: ThemeConfig = {
       headerBg: '#FFFBF5',
       bodyBg: '#FFFBF5',
       footerBg: '#FFFBF5'
+    },
+    Modal: {
+      contentBg: 'transparent',
+      boxShadow: 'none'
     }
   }
 }

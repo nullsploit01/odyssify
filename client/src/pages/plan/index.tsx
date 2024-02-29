@@ -122,9 +122,10 @@ const PlanPage: FC = () => {
       </Row>
       <Row style={{ display: 'flex', placeContent: 'center' }}>
         <Col lg={12}>
-          {itinerary.map((_, idx) => {
-            return <Collapse style={{ margin: '2rem' }} key={idx} items={getCollapseItems(idx)} />
-          })}
+          {itinerary &&
+            itinerary.map((_, idx) => {
+              return <Collapse style={{ margin: '2rem' }} key={idx} items={getCollapseItems(idx)} />
+            })}
         </Col>
       </Row>
     </div>

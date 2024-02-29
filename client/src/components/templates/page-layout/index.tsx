@@ -1,13 +1,9 @@
-import {
-  SignedIn,
-  SignedOut,
-  SignUpButton,
-  UserButton
-} from '@clerk/clerk-react'
-import { Button, Divider, Layout, Typography } from 'antd'
+import { SignedIn, UserButton } from '@clerk/clerk-react'
+import { Divider, Layout, Typography } from 'antd'
 import { FC, PropsWithChildren } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import LoginButton from 'src/components/molecules/login-button'
 import { PATHS } from 'src/router/routes/paths'
 
 const { Header, Content, Footer } = Layout
@@ -37,13 +33,7 @@ const PageLayout: FC<PropsWithChildren> = ({ children }) => {
             </SignedIn>
           </div>
           <div style={{ display: 'flex', placeItems: 'center' }}>
-            <SignedOut>
-              <div>
-                <SignUpButton>
-                  <Button type="primary">Login</Button>
-                </SignUpButton>
-              </div>
-            </SignedOut>
+            <LoginButton />
           </div>
         </div>
       </Header>

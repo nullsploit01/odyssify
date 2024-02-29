@@ -1,9 +1,9 @@
 import './index.css'
-import { SignedOut, SignInButton } from '@clerk/clerk-react'
 import { Button, Layout } from 'antd'
 import { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import LoginButton from 'src/components/molecules/login-button'
 import { PATHS } from 'src/router/routes/paths'
 
 const HomePage: FC = () => {
@@ -28,13 +28,7 @@ const HomePage: FC = () => {
         <Button onClick={() => navigate(PATHS.PLAN_PAGE)} size="large" type="link">
           Start Planning
         </Button>
-        <SignedOut>
-          <SignInButton>
-            <Button size="large" type="primary">
-              Sign In
-            </Button>
-          </SignInButton>
-        </SignedOut>
+        <LoginButton />
       </div>
     </Layout.Content>
   )
