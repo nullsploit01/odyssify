@@ -6,6 +6,7 @@ import {
   RobotOutlined,
   TagOutlined
 } from '@ant-design/icons'
+import { SignedIn, SignedOut } from '@clerk/clerk-react'
 import {
   Button,
   Col,
@@ -20,6 +21,7 @@ import {
 import { FC, Fragment } from 'react'
 
 import withTemplate from 'src/components/hoc/with-template'
+import LoginButton from 'src/components/molecules/login-button'
 import PageLayout from 'src/components/templates/page-layout'
 import { useItineraryStore } from 'src/stores/use-itinerary'
 
@@ -101,22 +103,32 @@ const PlanPage: FC = () => {
             value={[dateRange.from, dateRange.to]}
           />
           <div style={{ margin: '2rem', textAlign: 'center' }}>
-            <Button
-              onClick={updateItinerary}
-              style={{ color: '#fa541c', fontSize: '1.2rem' }}
-              loading={loading}
-              disabled={loading}
-              type="link"
-              size="large"
-            >
-              {loading ? (
-                <>Beep Boop! Please wait.</>
-              ) : (
-                <>
-                  Generate Itinerary with AI <RobotOutlined />
-                </>
-              )}
-            </Button>
+            <SignedIn>
+              <Button
+                onClick={updateItinerary}
+                style={{ color: '#fa541c', fontSize: '1.2rem' }}
+                loading={loading}
+                disabled={loading}
+                type="link"
+                size="large"
+              >
+                {loading ? (
+                  <>Beep Boop! Please wait.</>
+                ) : (
+                  <>
+                    Generate Itinerary with AI <RobotOutlined />
+                  </>
+                )}
+              </Button>
+            </SignedIn>
+            <SignedOut>
+              <LoginButton
+                label="Start Planning"
+                type="link"
+                size="large"
+                style={{ color: '#fa541c', fontSize: '1.2rem' }}
+              />
+            </SignedOut>
           </div>
         </Col>
       </Row>

@@ -1,4 +1,4 @@
-import { IItinerary } from 'src/types/stores'
+import { IItinerary } from 'src/types/stores/itinerary'
 
 export interface IItineraryAPIResponse {
   status: number

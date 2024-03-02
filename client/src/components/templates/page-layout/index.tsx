@@ -29,7 +29,7 @@ const PageLayout: FC<PropsWithChildren> = ({ children }) => {
         <div>
           <div>
             <SignedIn>
-              <UserButton />
+              <UserButton afterSignOutUrl={PATHS.HOME_PAGE} />
             </SignedIn>
           </div>
           <div style={{ display: 'flex', placeItems: 'center' }}>

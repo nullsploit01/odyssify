@@ -3,7 +3,11 @@ import { create } from 'zustand'
 import { shallow } from 'zustand/shallow'
 
 import { itineraryService } from 'src/services/api/itinerary'
-import { IItineraryDateRange, IItineraryStore, IItineraryValidation } from 'src/types/stores'
+import {
+  IItineraryDateRange,
+  IItineraryStore,
+  IItineraryValidation
+} from 'src/types/stores/itinerary'
 
 const itineraryStore = create<IItineraryStore>((set, get) => ({
   location: '',

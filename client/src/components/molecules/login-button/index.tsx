@@ -1,16 +1,16 @@
 import { SignedOut } from '@clerk/clerk-react'
 import { Button } from 'antd'
-import { ButtonType } from 'antd/es/button'
+import { BaseButtonProps } from 'antd/es/button/button'
 import { FC, Fragment, useState } from 'react'
 
 import LoginModal from 'src/components/molecules/login-modal'
 
-interface ILoginButtonProps {
+interface ILoginButtonProps extends BaseButtonProps {
   label?: string
-  type?: ButtonType
+  style?: React.CSSProperties
 }
 
-const LoginButton: FC<ILoginButtonProps> = ({ label, type }) => {
+const LoginButton: FC<ILoginButtonProps> = ({ label, type, ...rest }) => {
   const [_showLoginModal, setShowLoginModal] = useState(false)
 
   const handleShow = () => {
@@ -24,7 +24,7 @@ const LoginButton: FC<ILoginButtonProps> = ({ label, type }) => {
   return (
     <Fragment>
       <SignedOut>
-        <Button type={type} onClick={handleShow}>
+        <Button type={type} onClick={handleShow} {...rest}>
           {label}
         </Button>
         <LoginModal handleCancel={handleCancel} show={_showLoginModal} />
