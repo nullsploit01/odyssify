@@ -1,4 +1,4 @@
-import debounce from 'lodash/debounce'
+import { debounce } from 'lodash'
 import { FC, Fragment, useCallback, useState } from 'react'
 
 import SearchBar, { ISearchBarProps } from 'src/components/molecules/search-bar'
