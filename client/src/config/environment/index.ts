@@ -4,5 +4,5 @@ if (!import.meta.env.VITE_CLERK_PUBLISHABLE_KEY) {
 
 export const environment = {
   API_URL: import.meta.env.VITE_API_URL,
-  PUBLISHABLE_KEY: import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
+  CLERK_PUBLISHABLE_KEY: import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 }

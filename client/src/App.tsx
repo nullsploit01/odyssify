@@ -17,7 +17,7 @@ const App = () => {
 
   return (
     <StrictMode>
-      <ClerkProvider publishableKey={environment.PUBLISHABLE_KEY}>
+      <ClerkProvider publishableKey={environment.CLERK_PUBLISHABLE_KEY}>
         <ClerkLoading>
           <LoadingScreen show />
         </ClerkLoading>

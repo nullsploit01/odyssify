@@ -6,12 +6,11 @@ import {
   RobotOutlined,
   TagOutlined
 } from '@ant-design/icons'
-import { SignedIn, SignedOut } from '@clerk/clerk-react'
-import { Button, Col, Collapse, CollapseProps, Divider, Row, Typography } from 'antd'
+import { Col, Collapse, CollapseProps, Divider, Row, Typography } from 'antd'
 import { FC, Fragment } from 'react'
 
 import withTemplate from 'src/components/hoc/with-template'
-import LoginButton from 'src/components/molecules/login-button'
+import AuthProtectedButton from 'src/components/molecules/auth-protected-button'
 import ItineraryDateRangePicker from 'src/components/organisms/itinerary-date-range-picker'
 import LocationSearchBar from 'src/components/organisms/location-search-bar'
 import PageLayout from 'src/components/templates/page-layout'
@@ -68,32 +67,25 @@ const PlanPage: FC = () => {
           <Divider />
           <ItineraryDateRangePicker style={{ width: '100%', padding: '15px 10px' }} />
           <div style={{ margin: '2rem', textAlign: 'center' }}>
-            <SignedIn>
-              <Button
-                onClick={updateItinerary}
-                style={{ color: '#fa541c', fontSize: '1.2rem' }}
-                loading={loading}
-                disabled={loading}
-                type="link"
-                size="large"
-              >
-                {loading ? (
-                  <>Beep Boop! Please wait.</>
+            <AuthProtectedButton
+              signedInLabel={
+                loading ? (
+                  <Fragment>Beep Boop! Please wait.</Fragment>
                 ) : (
-                  <>
+                  <Fragment>
                     Generate Itinerary with AI <RobotOutlined />
-                  </>
-                )}
-              </Button>
-            </SignedIn>
-            <SignedOut>
-              <LoginButton
-                label="Start Planning"
-                type="link"
-                size="large"
-                style={{ color: '#fa541c', fontSize: '1.2rem' }}
-              />
-            </SignedOut>
+                  </Fragment>
+                )
+              }
+              signedOutLabel="Start Planning"
+              shouldSignIn
+              size="large"
+              style={{ color: '#fa541c', fontSize: '1.2rem' }}
+              loading={loading}
+              disabled={loading}
+              onClick={updateItinerary}
+              type="link"
+            />
           </div>
         </Col>
       </Row>
