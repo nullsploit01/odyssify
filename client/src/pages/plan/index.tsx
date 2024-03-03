@@ -7,14 +7,17 @@ import {
   TagOutlined
 } from '@ant-design/icons'
 import { Col, Collapse, CollapseProps, Divider, Row, Typography } from 'antd'
-import { FC, Fragment } from 'react'
+import { FC, Fragment, lazy } from 'react'
 
 import withTemplate from 'src/components/hoc/with-template'
-import AuthProtectedButton from 'src/components/molecules/auth-protected-button'
-import ItineraryDateRangePicker from 'src/components/organisms/itinerary-date-range-picker'
-import LocationSearchBar from 'src/components/organisms/location-search-bar'
-import PageLayout from 'src/components/templates/page-layout'
 import { useItineraryStore } from 'src/stores/use-itinerary'
+
+const AuthProtectedButton = lazy(() => import('src/components/molecules/auth-protected-button'))
+const ItineraryDateRangePicker = lazy(
+  () => import('src/components/organisms/itinerary-date-range-picker')
+)
+const LocationSearchBar = lazy(() => import('src/components/organisms/location-search-bar'))
+const PageLayout = lazy(() => import('src/components/templates/page-layout'))
 
 const PlanPage: FC = () => {
   const { loading, itinerary, updateItinerary } = useItineraryStore()

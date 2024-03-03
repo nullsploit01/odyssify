@@ -1,10 +1,11 @@
 import './index.css'
 import { Button, Layout } from 'antd'
-import { FC } from 'react'
+import { FC, lazy } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import LoginButton from 'src/components/molecules/login-button'
 import { PATHS } from 'src/router/routes/paths'
+
+const LoginButton = lazy(() => import('src/components/molecules/login-button'))
 
 const HomePage: FC = () => {
   const APP_NAME = 'ODYSSIFY'

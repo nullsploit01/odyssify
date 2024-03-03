@@ -1,14 +1,15 @@
-import LoadingScreen from './components/molecules/loading-screen'
-import { environment } from './config/environment'
 import { ClerkLoaded, ClerkLoading, ClerkProvider } from '@clerk/clerk-react'
 import { ConfigProvider } from 'antd'
-import { StrictMode, useEffect } from 'react'
+import { lazy, StrictMode, useEffect } from 'react'
 import { RouterProvider } from 'react-router-dom'
 
+import { environment } from 'src/config/environment'
 import 'src/index.css'
 import { router } from 'src/router'
 import { pingServer } from 'src/services/api'
 import { appTheme } from 'src/theme'
+
+const LoadingScreen = lazy(() => import('src/components/molecules/loading-screen'))
 
 const App = () => {
   useEffect(() => {
