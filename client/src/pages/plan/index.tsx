@@ -7,37 +7,18 @@ import {
   TagOutlined
 } from '@ant-design/icons'
 import { SignedIn, SignedOut } from '@clerk/clerk-react'
-import {
-  Button,
-  Col,
-  Collapse,
-  CollapseProps,
-  DatePicker,
-  Divider,
-  Input,
-  Row,
-  Typography
-} from 'antd'
+import { Button, Col, Collapse, CollapseProps, Divider, Row, Typography } from 'antd'
 import { FC, Fragment } from 'react'
 
 import withTemplate from 'src/components/hoc/with-template'
 import LoginButton from 'src/components/molecules/login-button'
+import ItineraryDateRangePicker from 'src/components/organisms/itinerary-date-range-picker'
+import LocationSearchBar from 'src/components/organisms/location-search-bar'
 import PageLayout from 'src/components/templates/page-layout'
 import { useItineraryStore } from 'src/stores/use-itinerary'
 
-const { RangePicker } = DatePicker
-
 const PlanPage: FC = () => {
-  const {
-    location,
-    loading,
-    isInvalid,
-    dateRange,
-    itinerary,
-    updateLocation,
-    updateDateRange,
-    updateItinerary
-  } = useItineraryStore()
+  const { loading, itinerary, updateItinerary } = useItineraryStore()
 
   const getCollapseItems = (idx: number) => {
     const collapseItineraryItem = itinerary.filter((_, _idx) => idx === _idx)
@@ -83,25 +64,9 @@ const PlanPage: FC = () => {
     <div>
       <Row style={{ display: 'flex', placeContent: 'center' }}>
         <Col xxl={6} lg={8} md={10}>
-          <Input
-            size="large"
-            allowClear
-            required
-            status={isInvalid.location ? 'error' : undefined}
-            value={location}
-            onChange={(e) => updateLocation(e.target.value)}
-            placeholder="eg Bali, Paris"
-            prefix={<b style={{ margin: '10px 5px' }}>Where To?</b>}
-          />
+          <LocationSearchBar />
           <Divider />
-          <RangePicker
-            required
-            status={isInvalid.dateRange ? 'error' : undefined}
-            onChange={updateDateRange}
-            style={{ width: '100%', padding: '15px 10px' }}
-            size="large"
-            value={[dateRange.from, dateRange.to]}
-          />
+          <ItineraryDateRangePicker style={{ width: '100%', padding: '15px 10px' }} />
           <div style={{ margin: '2rem', textAlign: 'center' }}>
             <SignedIn>
               <Button
