@@ -1,4 +1,4 @@
-import './index.css'
+import './index.scss'
 import { Button, Layout } from 'antd'
 import { FC, lazy } from 'react'
 import { useNavigate } from 'react-router-dom'

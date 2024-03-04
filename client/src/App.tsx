@@ -4,7 +4,7 @@ import { lazy, StrictMode, useEffect } from 'react'
 import { RouterProvider } from 'react-router-dom'
 
 import { environment } from 'src/config/environment'
-import 'src/index.css'
+import 'src/index.scss'
 import { router } from 'src/router'
 import { pingServer } from 'src/services/api'
 import { appTheme } from 'src/theme'

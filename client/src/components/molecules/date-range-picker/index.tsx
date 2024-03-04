@@ -1,4 +1,4 @@
-import './index.css'
+import './index.scss'
 import { DatePicker } from 'antd'
 import { RangePickerProps } from 'antd/es/date-picker'
 import { FC, Fragment } from 'react'
