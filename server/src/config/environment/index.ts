@@ -14,5 +14,6 @@ export const environment = {
   NODE_ENV: process.env.NODE_ENV || 'development',
   PROJECT_ID: process.env.PROJECT_ID,
   PROJECT_LOCATION: process.env.PROJECT_LOCATION,
-  ALLOWED_ORIGIN: process.env.ALLOWED_ORIGIN
+  ALLOWED_ORIGIN: process.env.ALLOWED_ORIGIN,
+  GOOGLE_PLACES_API_KEY: process.env.GOOGLE_PLACES_API_KEY
 }

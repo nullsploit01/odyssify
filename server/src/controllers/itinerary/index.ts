@@ -2,15 +2,7 @@ import { BadRequestError } from 'src/errors/bad-request'
 import { itineraryService } from 'src/services/itinerary'
 import { IControllerMethod } from 'src/types/controllers'
 
-class Controller {
-  ping: IControllerMethod = async (req, res, next) => {
-    try {
-      return res.json({ message: 'pong' })
-    } catch (error) {
-      next(error)
-    }
-  }
-
+class ItineraryController {
   getItinerary: IControllerMethod = async (req, res, next) => {
     try {
       const { location, from, to } = req.query
@@ -31,4 +23,4 @@ class Controller {
   }
 }
 
-export const controller = new Controller()
+export const itineraryController = new ItineraryController()
