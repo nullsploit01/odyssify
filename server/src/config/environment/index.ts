@@ -9,6 +9,10 @@ if (!process.env.PROJECT_ID || !process.env.PROJECT_LOCATION) {
   throw new Error('Project config is not defined')
 }
 
+if (!process.env.GOOGLE_PLACES_API_KEY) {
+  throw new Error('Google Maps API Key is not defined')
+}
+
 export const environment = {
   PORT: process.env.PORT || 8080,
   NODE_ENV: process.env.NODE_ENV || 'development',

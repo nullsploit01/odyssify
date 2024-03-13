@@ -10,13 +10,15 @@ import { itineraryRouter } from 'src/router/itinerary'
 
 const app = express()
 
+// middlewares
 app.use(corsConfig())
 app.use(httpLogger)
 app.use(errorLogger)
 app.use(express.json())
 
-app.use('/itinerary', itineraryRouter)
+// router
 app.use('/geo', geoRouter)
+app.use('/itinerary', itineraryRouter)
 
 app.get('/ping', (req, res) => {
   return res.json({ message: 'pong' })
