@@ -6,7 +6,7 @@ import { BadRequestError } from 'src/errors/bad-request'
 export const corsConfig = () =>
   cors({
     origin(requestOrigin, callback) {
-      const allowUndefinedOrigin = environment.NODE_ENV === 'local' && !requestOrigin
+      const allowUndefinedOrigin = environment.ALLOW_UNDEFINED_ORIGIN && !requestOrigin
 
       if (allowUndefinedOrigin || requestOrigin === environment.ALLOWED_ORIGIN) {
         return callback(null, true)
