@@ -1,5 +1,5 @@
-import { googleMapsClient } from 'src/client/google-maps'
 import { BadRequestError } from 'src/errors/bad-request'
+import { geoService } from 'src/services/geo'
 import { IControllerMethod } from 'src/types/controllers'
 
 class GeoController {
@@ -11,8 +11,8 @@ class GeoController {
         throw new BadRequestError('Invalid Request Params')
       }
 
-      const { data } = await googleMapsClient.autoComplete(query.toString())
-      return res.send(data)
+      const autoCompleteResponse = await geoService.autoComplete(query.toString())
+      return res.send(autoCompleteResponse)
     } catch (error) {
       next(error)
     }
