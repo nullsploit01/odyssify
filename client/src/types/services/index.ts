@@ -4,3 +4,10 @@ export interface IItineraryAPIResponse {
   status: number
   itinerary: IItinerary[]
 }
+
+export interface IAutoCompleteAPIResponse {
+  id: string
+  name: string
+  secondaryName: string
+  types: string[]
+}
