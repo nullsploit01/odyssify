@@ -1,4 +1,4 @@
-import { Client } from '@googlemaps/google-maps-services-js'
+import { Client, PlaceAutocompleteType } from '@googlemaps/google-maps-services-js'
 
 import { environment } from 'src/config/environment'
 
@@ -14,11 +14,12 @@ class GoogleMapsClient {
     })
   }
 
-  autoComplete = async (text: string) => {
+  autoComplete = async (text: string, types = PlaceAutocompleteType.regions) => {
     return client.placeAutocomplete({
       params: {
         key: environment.GOOGLE_PLACES_API_KEY,
-        input: text
+        input: text,
+        types
       }
     })
   }

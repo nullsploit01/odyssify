@@ -7,9 +7,11 @@ import { geoService } from 'src/services/api/geo'
 import { useItineraryStore } from 'src/stores/use-itinerary'
 import { IAutoCompleteAPIResponse } from 'src/types/services'
 
-interface ILocationSearchBarProps extends Omit<ISearchBarProps, 'options'> {}
+interface ILocationSearchBarProps extends Omit<ISearchBarProps, 'options'> {
+  onlyRegions?: boolean
+}
 
-const LocationSearchBar: FC<ILocationSearchBarProps> = ({ ...rest }) => {
+const LocationSearchBar: FC<ILocationSearchBarProps> = ({ onlyRegions, ...rest }) => {
   const [_loading, setLoading] = useState(false)
   const [_locationAutocompleteResults, setLocationAutocompleteResults] = useState<
     IAutoCompleteAPIResponse[]
@@ -32,7 +34,7 @@ const LocationSearchBar: FC<ILocationSearchBarProps> = ({ ...rest }) => {
   const getLocationAutocompleteResults = () => {
     setLoading(true)
     geoService
-      .autocomplete(location)
+      .autocomplete(location, onlyRegions)
       .then((response) => {
         if (response?.data) {
           setLocationAutocompleteResults(response?.data)

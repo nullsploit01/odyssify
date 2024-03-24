@@ -5,13 +5,16 @@ import { IControllerMethod } from 'src/types/controllers'
 class GeoController {
   autocomplete: IControllerMethod = async (req, res, next) => {
     try {
-      const { query } = req.query
+      const { query, onlyRegions } = req.query
 
       if (!query) {
         throw new BadRequestError('Invalid Request Params')
       }
 
-      const autoCompleteResponse = await geoService.autoComplete(query.toString())
+      const autoCompleteResponse = await geoService.autoComplete(
+        query.toString(),
+        onlyRegions?.toString() === 'true'
+      )
       return res.send(autoCompleteResponse)
     } catch (error) {
       next(error)

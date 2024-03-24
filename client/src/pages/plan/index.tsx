@@ -66,7 +66,7 @@ const PlanPage: FC = () => {
     <div>
       <Row style={{ display: 'flex', placeContent: 'center' }}>
         <Col xxl={6} lg={8} md={10}>
-          <LocationSearchBar />
+          <LocationSearchBar onlyRegions />
           <Divider />
           <ItineraryDateRangePicker style={{ width: '100%', padding: '15px 10px' }} />
           <div style={{ margin: '2rem', textAlign: 'center' }}>

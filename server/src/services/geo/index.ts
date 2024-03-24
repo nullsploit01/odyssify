@@ -1,11 +1,15 @@
-import { PlaceAutocompleteResponseData } from '@googlemaps/google-maps-services-js'
+import {
+  PlaceAutocompleteResponseData,
+  PlaceAutocompleteType
+} from '@googlemaps/google-maps-services-js'
 
 import { googleMapsClient } from 'src/client/google-maps'
 import { IAutoComplete } from 'src/types/models/geo'
 
 class GeoService {
-  autoComplete = async (query: string) => {
-    const { data } = await googleMapsClient.autoComplete(query)
+  autoComplete = async (query: string, onlyRegions = false) => {
+    const autoCompleteType = onlyRegions ? PlaceAutocompleteType.regions : undefined
+    const { data } = await googleMapsClient.autoComplete(query, autoCompleteType)
     return this.mapAutocompleteResponse(data)
   }
 
