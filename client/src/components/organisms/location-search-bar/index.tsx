@@ -1,4 +1,4 @@
-import { UserOutlined } from '@ant-design/icons'
+import { Spin, Typography } from 'antd'
 import { debounce } from 'lodash'
 import { FC, Fragment, useEffect, useState } from 'react'
 
@@ -10,6 +10,7 @@ import { IAutoCompleteAPIResponse } from 'src/types/services'
 interface ILocationSearchBarProps extends Omit<ISearchBarProps, 'options'> {}
 
 const LocationSearchBar: FC<ILocationSearchBarProps> = ({ ...rest }) => {
+  const [_loading, setLoading] = useState(false)
   const [_locationAutocompleteResults, setLocationAutocompleteResults] = useState<
     IAutoCompleteAPIResponse[]
   >([])
@@ -19,6 +20,8 @@ const LocationSearchBar: FC<ILocationSearchBarProps> = ({ ...rest }) => {
   useEffect(() => {
     if (location?.trim()) {
       debouncedGetLocationAutocompleteResults()
+    } else {
+      setLocationAutocompleteResults([])
     }
 
     return () => {
@@ -27,70 +30,47 @@ const LocationSearchBar: FC<ILocationSearchBarProps> = ({ ...rest }) => {
   }, [location])
 
   const getLocationAutocompleteResults = () => {
-    geoService.autocomplete(location).then((response) => {
-      if (response?.data) {
-        setLocationAutocompleteResults(response?.data)
-      }
-    })
+    setLoading(true)
+    geoService
+      .autocomplete(location)
+      .then((response) => {
+        if (response?.data) {
+          setLocationAutocompleteResults(response?.data)
+        }
+      })
+      .finally(() => setLoading(false))
   }
 
   const debouncedGetLocationAutocompleteResults = debounce(getLocationAutocompleteResults, 500)
 
-  const renderTitle = (title: string) => (
-    <span>
-      {title}
-      <a
-        style={{ float: 'right' }}
-        href="https://www.google.com/search?q=antd"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        more
-      </a>
-    </span>
-  )
-
-  _locationAutocompleteResults.map(() => {})
-
-  const renderItem = (title: string, count: number) => ({
-    value: title,
+  const renderAutocompleteOption = (autocompleteOption: IAutoCompleteAPIResponse) => ({
+    value: autocompleteOption.name,
     label: (
       <div
         style={{
           display: 'flex',
-          justifyContent: 'space-between'
+          flexDirection: 'column'
         }}
       >
-        {title}
-        <span>
-          <UserOutlined /> {count}
-        </span>
+        <Typography.Text strong>{autocompleteOption.name}</Typography.Text>
+        <Typography.Text type="secondary">{autocompleteOption.secondaryName}</Typography.Text>
       </div>
-    )
+    ),
+    id: autocompleteOption.id
   })
 
-  const options = [
-    {
-      label: renderTitle('Libraries'),
-      options: [renderItem('AntDesign', 10000), renderItem('AntDesign UI', 10600)]
-    },
-    {
-      label: renderTitle('Solutions'),
-      options: [renderItem('AntDesign UI FAQ', 60100), renderItem('AntDesign FAQ', 30010)]
-    },
-    {
-      label: renderTitle('Articles'),
-      options: [renderItem('AntDesign design language', 100000)]
-    }
-  ]
+  const options = _locationAutocompleteResults.map((_location) => {
+    return renderAutocompleteOption(_location)
+  })
 
   return (
     <Fragment>
       <SearchBar
         value={location}
-        onChange={(e) => updateLocation(e.target.value)}
         status={isInvalid.location ? 'error' : undefined}
         options={options}
+        onSelect={(e) => updateLocation(e.currentTarget.value)}
+        suffix={_loading ? <Spin /> : null}
         {...rest}
       />
     </Fragment>
