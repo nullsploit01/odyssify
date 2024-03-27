@@ -1,12 +1,12 @@
 import { notification, NotificationArgsProps } from 'antd'
 import { FC, Fragment, useEffect } from 'react'
 
-type NotificationType = 'success' | 'info' | 'warning' | 'error'
+import { NotificationType } from 'src/types/context-provider'
 
 export interface INotificationProps extends NotificationArgsProps {
   type: NotificationType
   message: string
-  description: string
+  description?: string
   show?: boolean
 }
 

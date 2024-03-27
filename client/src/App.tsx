@@ -1,3 +1,5 @@
+import { HttpInterceptor } from './clients/http'
+import { NotificationProvider } from './context-provider/notification'
 import { ClerkLoaded, ClerkLoading, ClerkProvider } from '@clerk/clerk-react'
 import { ConfigProvider } from 'antd'
 import { lazy, StrictMode, useEffect } from 'react'
@@ -23,9 +25,13 @@ const App = () => {
           <LoadingScreen show />
         </ClerkLoading>
         <ClerkLoaded>
-          <ConfigProvider theme={appTheme}>
-            <RouterProvider router={router} />
-          </ConfigProvider>
+          <NotificationProvider>
+            <HttpInterceptor>
+              <ConfigProvider theme={appTheme}>
+                <RouterProvider router={router} />
+              </ConfigProvider>
+            </HttpInterceptor>
+          </NotificationProvider>
         </ClerkLoaded>
       </ClerkProvider>
     </StrictMode>
